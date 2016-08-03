@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">Robot</string>
+    <string name="app_name">机器爷</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="input">输入</string>
+    <string name="send">发送</string>
 </resources>
