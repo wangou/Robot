@@ -6,20 +6,24 @@ import org.xutils.db.annotation.Table;
 /**
  * Created by Administrator on 2016/8/5.
  */
-@Table(name = "response")
+@Table(name = "result")
 public class Response {
     @Column(name = "id", isId = true, property = "PRIMARY KEY AUTOINCREMENT")
     private int id;
+
     @Column(name = "isCom")
     private boolean isCom = true;
+
+    @Column(name = "result")
+    private String result;
+
     @Column(name = "code")
-    private int code;
-    @Column(name = "text")
-    private String text;
-    @Column(name = "url")
-    private String url;
-    @Column(name = "list")
-    private String list;
+    private int code=100000;
+
+    public Response(String result, boolean isCom) {
+        this.result = result;
+        this.isCom = isCom;
+    }
 
     public int getId() {
         return id;
@@ -27,11 +31,6 @@ public class Response {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Response(boolean isCom, String text) {
-        this.isCom = isCom;
-        this.text = text;
     }
 
     public boolean isCom() {
@@ -42,15 +41,12 @@ public class Response {
         isCom = com;
     }
 
-    public Response(int code, String text, String url, String list) {
-        this.code = code;
-        this.text = text;
-        this.url = url;
-        this.list = list;
+    public String getResult() {
+        return result;
     }
 
-    public Response() {
-
+    public void setResult(String result) {
+        this.result = result;
     }
 
     public int getCode() {
@@ -61,27 +57,13 @@ public class Response {
         this.code = code;
     }
 
-    public String getText() {
-        return text;
+    public Response(String result, int code) {
+
+        this.result = result;
+        this.code = code;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
+    public Response() {
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getList() {
-        return list;
-    }
-
-    public void setList(String list) {
-        this.list = list;
     }
 }

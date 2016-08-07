@@ -8,4 +8,6 @@
     <string name="input">输入</string>
     <string name="send">发送</string>
     <string name="net_no">网络连接断开</string>
+    <string name="not_null">发送内容不能为空</string>
+    <string name="link">链接</string>
 </resources>
