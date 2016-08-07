@@ -91,6 +91,7 @@ public class ListItemAdapter extends BaseAdapter {
                 viewHolder.chatMsg.setText(object.getResult());
                 break;
             case Constant.CODE_RESONSE_COOK:
+
                 break;
             case Constant.CODE_RESPONSE_URL:
                 UrlViewHolder urlViewHolder = (UrlViewHolder) holder;
