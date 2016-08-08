@@ -85,5 +85,10 @@ public class News {
         public void setDetailurl(String detailurl) {
             this.detailurl = detailurl;
         }
+
+        @Override
+        public String toString() {
+            return this.article;
+        }
     }
 }

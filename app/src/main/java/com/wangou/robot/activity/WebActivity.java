@@ -52,12 +52,8 @@ public class WebActivity extends BaseActivity {
      * 加载
      */
     private void loadWebView() {
-        webView.loadUrl(web_url);
         Toast.makeText(this, "页面加载中，请稍候...", Toast.LENGTH_SHORT).show();
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-        //覆盖WebView默认使用第三方或系统默认浏览器打开网页的行为，使网页用WebView打开
-        webView.setWebViewClient(new WebViewClient() {
+        final WebViewClient client = new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 // TODO Auto-generated method stub
@@ -74,7 +70,22 @@ public class WebActivity extends BaseActivity {
                     // 加载中
                 }
             }
+        };
+        WebSettings settings = webView.getSettings();
+        settings.setJavaScriptEnabled(true);
+        settings.setJavaScriptCanOpenWindowsAutomatically(true);
+        settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        webView.setWebViewClient(client);
+        webView.loadUrl(web_url);
+    }
 
-        });
+    @Override
+    public void onBackPressed() {
+        if (webView.canGoBack()) {
+            webView.goBack(); 
+        } else {
+            super.onBackPressed();
+        }
+
     }
 }

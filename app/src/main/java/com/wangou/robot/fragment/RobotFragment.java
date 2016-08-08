@@ -41,6 +41,8 @@ public class RobotFragment extends BaseFragment {
 
     private ListItemAdapter mAdapter;
 
+    private int mItems = 10;
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -74,6 +76,9 @@ public class RobotFragment extends BaseFragment {
                                      @Override
                                      public void onRefresh() {
                                          srl.setRefreshing(true);
+                                         mItems += 10;
+                                         mAdapter.setDatas(MyDBHelper.getDbHelper().getResponses(mItems));
+                                         listView.setSelection(getSelectItem());
                                          hideShowing();
                                      }
                                  }
@@ -84,7 +89,7 @@ public class RobotFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        mAdapter.setDatas(MyDBHelper.getDbHelper().getResponses());
+        mAdapter.setDatas(MyDBHelper.getDbHelper().getResponses(mItems));
         listView.setSelection(listView.getCount() - 1);
     }
 
@@ -142,9 +147,14 @@ public class RobotFragment extends BaseFragment {
 
     private void saveInfo(Response response) {
         MyDBHelper.getDbHelper().saveInfo(response);
-        mAdapter.setDatas(MyDBHelper.getDbHelper().getResponses());
-        listView.setSelection(listView.getCount() - 1);
+        mAdapter.setDatas(MyDBHelper.getDbHelper().getResponses(mItems));
+        listView.setSelection(getSelectItem());
     }
+
+    private int getSelectItem() {
+        return 9;
+    }
+
 
     @Override
     public void onDestroy() {

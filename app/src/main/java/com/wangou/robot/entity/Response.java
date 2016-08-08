@@ -18,7 +18,7 @@ public class Response {
     private String result;
 
     @Column(name = "code")
-    private int code=100000;
+    private int code = 100000;
 
     public Response(String result, boolean isCom) {
         this.result = result;

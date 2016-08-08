@@ -95,9 +95,9 @@ public class MyDBHelper {
         }
     }
 
-    public List<Response> getResponses() {
+    public List<Response> getResponses(int items) {
         try {
-            return dbManager.findAll(Response.class);
+            return dbManager.selector(Response.class).orderBy("id", true).limit(items).findAll();
         } catch (DbException e) {
             e.printStackTrace();
         }

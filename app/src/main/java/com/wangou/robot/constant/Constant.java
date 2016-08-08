@@ -11,4 +11,5 @@ public class Constant {
     public static final int CODE_RESPONSE_URL = 200000;
     public static final int CODE_RESPONSE_NEWS = 302000;
     public static final int CODE_RESONSE_COOK = 308000;
+    public static final int TYPE_NEWS = 0;
 }
