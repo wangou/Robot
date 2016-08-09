@@ -1,5 +1,7 @@
 package com.wangou.robot.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -84,14 +86,15 @@ public class RobotFragment extends BaseFragment {
                                  }
 
         );
+        SharedPreferences preferences = mContext.getSharedPreferences("robot", Context.MODE_PRIVATE);
+        if (preferences.getBoolean("firstRun", true)) {
+            requestMsg("七夕快乐");
+            preferences.edit().putBoolean("firstRun", false).commit();
+        } else {
+            requestMsg("你好");
+        }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        mAdapter.setDatas(MyDBHelper.getDbHelper().getResponses(mItems));
-        listView.setSelection(listView.getCount() - 1);
-    }
 
     /**
      * 隐藏加载
@@ -117,6 +120,10 @@ public class RobotFragment extends BaseFragment {
         msgInput.setText("");
         Response response = new Response(msg, false);
         saveInfo(response);
+        requestMsg(msg);
+    }
+
+    private void requestMsg(String msg) {
         Callback.Cancelable cancelable = NetworkUtils.getNetworkUtil().
                 sendMessage(msg, new RequestDataCallBack() {
                     @Override
